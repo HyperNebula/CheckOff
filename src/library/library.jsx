@@ -68,8 +68,8 @@ export function Library() {
     async function addMovie(e) {
         e.preventDefault();
 
-        if (formStatus == "Watched" && (formDate == "" || formRating == "")) {
-            toast.error("Add rating and the date viewed", {
+        if (formStatus == "Watched" && formDate == "" ) {
+            toast.error("Make sure to add the date viewed", {
                 toasterId: 'modal',
             });
             return;
