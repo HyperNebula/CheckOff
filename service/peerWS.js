@@ -13,6 +13,11 @@ function peerProxy(httpServer) {
             console.log('received: %s', msg);
 
             ws.send(`I heard you say "${msg}"`);
+            wss.clients.forEach(function each(client) {
+                    if (client.readyState === 1) { 
+                        client.send(msg);
+                    }
+            });
         });
 
         ws.on('pong', () => {
