@@ -3,18 +3,6 @@ import toast, { Toaster } from 'react-hot-toast';
 
 import { useWebSocket } from '../WebsocketComponent';
 
-class MovieData {
-    constructor(name, movieID, posterLink, genres, year, description, status) {
-        this.name = name;
-        this.movieID = movieID;
-        this.posterLink = posterLink;
-        this.genres = genres;
-        this.year = year;
-        this.description = description;
-        this.status = status;
-    }
-}
-
 export function Library() {
     const [libraryDB, setLibraryDB] = useState([]);
     const [movieReturn, setMovieReturn] = useState([]);
@@ -102,6 +90,10 @@ export function Library() {
         getLibrary();
 
         toast.success(moviePUT["#TITLE"] + " was added to your library");
+
+        moviePUT.user = localStorage.getItem("userName");
+        moviePUT.updateTime = Date();
+        sendUpdate(moviePUT);
     }
 
     async function removeMovie(index) {

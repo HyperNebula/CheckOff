@@ -9,13 +9,12 @@ function peerProxy(httpServer) {
         ws.isAlive = true;
 
         ws.on('message', (data) => {
-            const msg = String.fromCharCode(...data);
+            const msg = JSON.parse(data);
             console.log('received: %s', msg);
 
-            ws.send(`I heard you say "${msg}"`);
             wss.clients.forEach(function each(client) {
                     if (client.readyState === 1) { 
-                        client.send(msg);
+                        client.send(JSON.stringify(msg));
                     }
             });
         });

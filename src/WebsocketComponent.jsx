@@ -16,11 +16,10 @@ export function WebsocketComponent({ children }) {
 
         socket.onopen = () => {
             console.log('WebSocket connection established.');
-            socket.send('I am listening');
         };
 
         socket.onmessage = (event) => {
-            console.log('received: ', event.data);
+            console.log('received: ', JSON.parse(event.data));
             
             setUpdates((prevMessages) => [...prevMessages, event.data]);
         };
@@ -32,7 +31,7 @@ export function WebsocketComponent({ children }) {
 
     const sendUpdate = (update) => {
         if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
-            socketRef.current.send(update);
+            socketRef.current.send(JSON.stringify(update));
         } else {
             console.warn("WebSocket is not connected!");
         }
