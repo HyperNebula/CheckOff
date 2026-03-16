@@ -89,12 +89,12 @@ export function Settings() {
                         <input type="text" id="targetUsername" value={username} onChange={(e) => setUsername(e.target.value)}/>
                     </p>
 
+{/*
                     <p>
                         <label>Profile Picture:</label><br/>
                         <input type="file" accept="image/png, image/jpeg"/>
                     </p>
 
-{/*
                     <p>
                         <label>Bio:</label><br/>
                         <textarea rows="4" defaultValue={"Information on user..."}></textarea>
