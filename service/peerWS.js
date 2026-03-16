@@ -8,9 +8,6 @@ function peerProxy(httpServer) {
     wss.on('connection', (ws) => {
         ws.isAlive = true;
 
-        ws.send('Hello webSocket');
-        console.log("WS connected")
-
         ws.on('message', (data) => {
             const msg = String.fromCharCode(...data);
             console.log('received: %s', msg);
