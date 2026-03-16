@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import toast, { Toaster } from 'react-hot-toast';
 
+import { useWebSocket } from './WebSocketContext.jsx';
+
 class MovieData {
     constructor(name, movieID, posterLink, genres, year, description, status) {
         this.name = name;
@@ -26,6 +28,8 @@ export function Library() {
     const [formDate, setFormDate] = useState("");
 
     const detailsModalRef = useRef(null);
+
+    const { sendUpdate, _ } = useWebSocket();
 
     useEffect(() => {
         getLibrary();

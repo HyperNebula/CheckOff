@@ -57,32 +57,31 @@ export async function createAuth(path, method, body) {
 
 export default function App() {
 
-    const webSocket = WebsocketComponent;
-    webSocket
-
     return (
-        <BrowserRouter>
-            <div><Toaster/></div>
+        <WebsocketComponent>
+            <BrowserRouter>
+                <div><Toaster/></div>
 
-            <div className="body">
-                
-                <Navbar />
+                <div className="body">
+                    
+                    <Navbar />
 
-                <Routes>
-                    <Route path='/' element={<Login />} exact />
-                    <Route path='/library' element={<ProtectedRoute> <Library /> </ProtectedRoute>} />
-                    <Route path='/feed' element={<ProtectedRoute> <Feed /> </ProtectedRoute>} />
-                    <Route path='/settings' element={<ProtectedRoute> <Settings /> </ProtectedRoute>} />
-                    <Route path='*' element={<NotFound />} />
-                </Routes>
+                    <Routes>
+                        <Route path='/' element={<Login />} exact />
+                        <Route path='/library' element={<ProtectedRoute> <Library /> </ProtectedRoute>} />
+                        <Route path='/feed' element={<ProtectedRoute> <Feed /> </ProtectedRoute>} />
+                        <Route path='/settings' element={<ProtectedRoute> <Settings /> </ProtectedRoute>} />
+                        <Route path='*' element={<NotFound />} />
+                    </Routes>
 
-                <footer className="credit">
-                    <span>David Deskins | </span>
-                    <a href="https://github.com/HyperNebula/CS260-Startup/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>Github Repository</a>
-                </footer>
+                    <footer className="credit">
+                        <span>David Deskins | </span>
+                        <a href="https://github.com/HyperNebula/CS260-Startup/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>Github Repository</a>
+                    </footer>
 
-            </div>
-        </BrowserRouter>
+                </div>
+            </BrowserRouter>
+        </WebsocketComponent>
     );
 }
 

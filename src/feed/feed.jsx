@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import { useWebSocket } from './WebSocketContext.jsx';
+
 class FeedUpdate {
     constructor(updateType, username, userProfilePic, movie, updateTime, updateData) {
         this.updateType = updateType;
@@ -41,17 +43,8 @@ function WatchedUpdate( {update} ) {
 
 export function Feed() {
 
-    const [updates, setUpdates] = useState([new FeedUpdate("Rating", "Test User", "/placeholder_user_profile_image.png", "Movie 1", "Monday", "⭐⭐⭐⭐⭐"), new FeedUpdate("Watched", "Test User 2", "/placeholder_user_profile_image.png", "Movie 2", "Saturady", "/placeholder_movie_poster.png")]);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            const newItem = new FeedUpdate("Rating", "Test User", "/placeholder_user_profile_image.png", "Movie 1", "Monday", "⭐⭐⭐⭐⭐");
-            
-            setUpdates(prevUpdates => [...prevUpdates, newItem]);
-        }, 5000);
-
-        return () => clearInterval(interval);
-    }, []);
+    //const [updates, setUpdates] = useState([new FeedUpdate("Rating", "Test User", "/placeholder_user_profile_image.png", "Movie 1", "Monday", "⭐⭐⭐⭐⭐"), new FeedUpdate("Watched", "Test User 2", "/placeholder_user_profile_image.png", "Movie 2", "Saturady", "/placeholder_movie_poster.png")]);
+    const { _, updates } = useWebSocket();
 
     return (
         <main>
