@@ -1,7 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 
-export function WebsocketComponent() {
+const WebSocketContext = createContext(null);
+
+export function WebsocketComponent({ children }) {
     const socketRef = useRef(null);
+    
+    const [updates, setUpdates] = useState([]);
 
     useEffect(() => {
         const port = 4000; //window.location.port;
@@ -17,6 +21,8 @@ export function WebsocketComponent() {
 
         socket.onmessage = (event) => {
             console.log('received: ', event.data);
+            
+            setUpdates((prevMessages) => [...prevMessages, event.data]);
         };
 
         return () => {
@@ -24,9 +30,21 @@ export function WebsocketComponent() {
         };
     }, []);
 
-    const sendMessage = () => {
+    const sendUpdate = (update) => {
         if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
-            socketRef.current.send("Hello, message sent!");
+            socketRef.current.send(update);
+        } else {
+            console.warn("WebSocket is not connected!");
         }
     };
+
+    return (
+        <WebSocketContext.Provider value={{ sendUpdate, updates }}>
+            {children}
+        </WebSocketContext.Provider>
+    );
 }
+
+export const useWebSocket = () => {
+    return useContext(WebSocketContext);
+};
