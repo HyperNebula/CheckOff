@@ -53,19 +53,6 @@ export function Feed() {
         return () => clearInterval(interval);
     }, []);
 
-    let port = 4000; //window.location.port;
-    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-    const socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
-
-    socket.onopen = () => {
-        console.log('WebSocket connection established.');
-        socket.send('I am listening');
-    };
-
-    socket.onmessage = (event) => {
-        console.log('received: ', event.data);
-    };
-
     return (
         <main>
             <h1 style={{ textAlign: "center" }}>Activity</h1>

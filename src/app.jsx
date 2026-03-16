@@ -8,6 +8,7 @@ import { Library } from './library/library';
 import { Feed } from './feed/feed';
 import { Settings } from './settings/settings';
 import { ProtectedRoute } from "./protectedRoute";
+import { WebsocketComponent } from './WebsocketComponent';
 
 
 function handleLogout() {
@@ -56,6 +57,9 @@ export async function createAuth(path, method, body) {
 
 export default function App() {
 
+    const webSocket = WebsocketComponent;
+    webSocket
+
     return (
         <BrowserRouter>
             <div><Toaster/></div>
@@ -83,5 +87,5 @@ export default function App() {
 }
 
 function NotFound() {
-  return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
+    return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
 }
