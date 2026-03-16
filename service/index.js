@@ -13,6 +13,8 @@ const path = require('path');
 
 const DB = require('./database.js');
 
+const { peerProxy } = require('./peerWS.js');
+
 
 async function createUser(username, password) {
     const passwordHash = await bcrypt.hash(password, 10);
@@ -218,6 +220,8 @@ app.get('/feed', (req, res) => {
 });
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
-app.listen(port, function () {
+const httpService = app.listen(port, function () {
     console.log(`Listening on port ${port}`);
 });
+
+peerProxy(httpService);
