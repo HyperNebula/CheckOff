@@ -80,7 +80,7 @@ export default function App() {
                     </footer>
 
                 </div>
-            </BrowserRouter>
+            </BrowserRouter>    
         </WebsocketComponent>
     );
 }

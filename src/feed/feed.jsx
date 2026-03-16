@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { useWebSocket } from './WebSocketContext.jsx';
+import { useWebSocket } from '../WebsocketComponent';
 
 class FeedUpdate {
     constructor(updateType, username, userProfilePic, movie, updateTime, updateData) {

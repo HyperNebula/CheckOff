@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import toast, { Toaster } from 'react-hot-toast';
 
-import { useWebSocket } from './WebSocketContext.jsx';
+import { useWebSocket } from '../WebsocketComponent';
 
 class MovieData {
     constructor(name, movieID, posterLink, genres, year, description, status) {
