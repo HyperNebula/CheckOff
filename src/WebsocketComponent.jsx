@@ -8,7 +8,7 @@ export function WebsocketComponent({ children }) {
     const [updates, setUpdates] = useState([]);
 
     useEffect(() => {
-        const port = 4000; //window.location.port;
+        const port = window.location.port;
         const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
         
         socketRef.current = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
