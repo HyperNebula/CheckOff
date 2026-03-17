@@ -7,7 +7,7 @@ function ToWatchUpdate( {update} ) {
     return (
         <article>
             <header>
-                <span><strong>{update.user}</strong> added <strong>{update["#TITLE"]}</strong> to their "To Watch" list <TimeAgo date={update.updateTime} /></span>
+                <span><strong>{update.user}</strong> added <strong>{update["#TITLE"]}</strong> to the "To Watch" list <TimeAgo date={update.updateTime} /></span>
             </header>
 
             <figure>
@@ -52,7 +52,6 @@ function RatingUpdate( {update} ) {
 
 export function Feed() {
 
-    //const [updates, setUpdates] = useState([new FeedUpdate("Rating", "Test User", "/placeholder_user_profile_image.png", "Movie 1", "Monday", "⭐⭐⭐⭐⭐"), new FeedUpdate("Watched", "Test User 2", "/placeholder_user_profile_image.png", "Movie 2", "Saturady", "/placeholder_movie_poster.png")]);
     const { _, updates } = useWebSocket();
 
     return (
@@ -62,6 +61,10 @@ export function Feed() {
             <div className="activity-feed">
 
                 {updates.map((update, index) => {
+                    if (update.user == localStorage.getItem("userName")) {
+                        update.user = "You"
+                    }
+
                     if (update.status === "To Watch") {
                         return <ToWatchUpdate key={index} update={update} />;
                     } else if (update.status === "Watched" && update.score === "") {
