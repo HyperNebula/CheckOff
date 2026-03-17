@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import TimeAgo from 'react-timeago';
 
 import { useWebSocket } from '../WebsocketComponent';
 
@@ -6,7 +7,7 @@ function ToWatchUpdate( {update} ) {
     return (
         <article>
             <header>
-                <span><strong>{update.user}</strong> added <strong>{update["#TITLE"]}</strong> to their "To Watch" list on <time>{update.updateTime}</time></span>
+                <span><strong>{update.user}</strong> added <strong>{update["#TITLE"]}</strong> to their "To Watch" list <TimeAgo date={update.updateTime} /></span>
             </header>
 
             <figure>
@@ -21,7 +22,10 @@ function WatchedUpdate( {update} ) {
     return (
         <article>
             <header>
-                <span><strong>{update.user}</strong> just watched <strong>{update["#TITLE"]}</strong> on <time>{update.updateTime}</time></span>
+                <span>
+                    <strong>{update.user}</strong> just watched <strong>{update["#TITLE"]}</strong> 
+                    <TimeAgo date={update.updateTime} />
+                </span>
             </header>
 
             <figure>
@@ -37,7 +41,7 @@ function RatingUpdate( {update} ) {
             <WatchedUpdate update={update} />
             <article>
                 <header>
-                    <span><strong>{update.user}</strong> rated <strong>{movie["#TITLE"] }</strong> on <time>{update.updateTime}</time></span>
+                    <span><strong>{update.user}</strong> rated <strong>{movie["#TITLE"] }</strong> <TimeAgo date={update.updateTime} /></span>
                 </header>
 
                 <p>Rating: {update.score}</p>
