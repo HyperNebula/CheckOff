@@ -134,7 +134,7 @@ export function Library() {
                         <br />
                         Status: { movie.status }
                         <br />
-                        {movie.score && <>Rating: { movie.score }</>}
+                        {movie.score && <>Rating: { movie.score }/10</>}
                         <br />
                         {movie.dateViewed && <>Date Viewed: {movie.dateViewed}</>}
                     </p>

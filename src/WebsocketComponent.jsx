@@ -19,9 +19,7 @@ export function WebsocketComponent({ children }) {
         };
 
         socket.onmessage = (event) => {
-            console.log('received: ', JSON.parse(event.data));
-            
-            setUpdates((prevMessages) => [...prevMessages, JSON.parse(event.data)]);
+            setUpdates(JSON.parse(event.data));
         };
 
         return () => {

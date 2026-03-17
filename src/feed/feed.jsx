@@ -13,7 +13,7 @@ function ToWatchUpdate( {update} ) {
             <figure>
                 <img src={update["#IMG_POSTER"]} alt={update["#TITLE"]} width="100"/>
             </figure>
-
+            <hr/>
         </article>
     )
 }
@@ -23,14 +23,13 @@ function WatchedUpdate( {update} ) {
         <article>
             <header>
                 <span>
-                    <strong>{update.user}</strong> just watched <strong>{update["#TITLE"]}</strong> 
-                    <TimeAgo date={update.updateTime} />
-                </span>
+                    <strong>{update.user}</strong> watched <strong>{update["#TITLE"]}</strong> <TimeAgo date={update.updateTime} /></span>
             </header>
 
             <figure>
                 <img src={update["#IMG_POSTER"]} alt={update["#TITLE"]} width="100"/>
             </figure>
+            <hr/>
         </article>
     )
 }
@@ -38,14 +37,15 @@ function WatchedUpdate( {update} ) {
 function RatingUpdate( {update} ) {
     return (
         <>
-            <WatchedUpdate update={update} />
             <article>
                 <header>
-                    <span><strong>{update.user}</strong> rated <strong>{movie["#TITLE"] }</strong> <TimeAgo date={update.updateTime} /></span>
+                    <span><strong>{update.user}</strong> rated <strong>{update["#TITLE"] }</strong> <TimeAgo date={update.updateTime} /></span>
                 </header>
 
-                <p>Rating: {update.score}</p>
+                <p>Rating: {update.score}/10</p>
             </article>
+            <hr/>
+            <WatchedUpdate update={update} />
         </>
     )
 }
@@ -54,7 +54,6 @@ export function Feed() {
 
     //const [updates, setUpdates] = useState([new FeedUpdate("Rating", "Test User", "/placeholder_user_profile_image.png", "Movie 1", "Monday", "⭐⭐⭐⭐⭐"), new FeedUpdate("Watched", "Test User 2", "/placeholder_user_profile_image.png", "Movie 2", "Saturady", "/placeholder_movie_poster.png")]);
     const { _, updates } = useWebSocket();
-    console.log(updates)
 
     return (
         <main>
@@ -62,7 +61,7 @@ export function Feed() {
 
             <div className="activity-feed">
 
-                {[...updates].reverse().map((update, index) => {
+                {updates.map((update, index) => {
                     if (update.status === "To Watch") {
                         return <ToWatchUpdate key={index} update={update} />;
                     } else if (update.status === "Watched" && update.score === "") {
