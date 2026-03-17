@@ -13,7 +13,7 @@ const path = require('path');
 
 const DB = require('./database.js');
 
-const { peerProxy } = require('./peerWS.js');
+const { peerProxy } = require('./peerProxy.js');
 
 
 async function createUser(username, password) {
