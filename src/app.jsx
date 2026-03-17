@@ -52,7 +52,7 @@ export async function createAuth(path, method, body) {
         body: body,
     });
 
-    return res.status;
+    return res;
 }
 
 export default function App() {

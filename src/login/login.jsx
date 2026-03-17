@@ -24,10 +24,13 @@ export function Login() {
 			return;
 		}
 
-		const status = await createAuth("auth", "PUT", JSON.stringify({ username, password }));
+		const res = await createAuth("auth", "PUT", JSON.stringify({ username, password }));
+		const status = res.status
 
 		if (status == 200) {
 			localStorage.setItem('userName', username);
+			const data = await res.json();
+			localStorage.setItem('sharePublic', data.sharePublic);
 			navigate('/library');
 			toast.success("Successfully logged in");
 			return;
@@ -54,10 +57,12 @@ export function Login() {
 			return;
 		}
 
-		const status = await createAuth("auth", "POST", JSON.stringify({ username, password }));
+		const res = await createAuth("auth", "POST", JSON.stringify({ username, password }));
+		const status = res.status
 
 		if (status == 200) {
 			localStorage.setItem('userName', username);
+			localStorage.setItem('sharePublic', true);
 			navigate('/settings');
 			toast.success("Account created");
 			return;

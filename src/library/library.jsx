@@ -91,9 +91,11 @@ export function Library() {
 
         toast.success(moviePUT["#TITLE"] + " was added to your library");
 
-        moviePUT.user = localStorage.getItem("userName");
-        moviePUT.updateTime = Date();
-        sendUpdate(moviePUT);
+        if (localStorage.getItem("sharePublic")) {
+            moviePUT.user = localStorage.getItem("userName");
+            moviePUT.updateTime = Date();
+            sendUpdate(moviePUT);
+        }
     }
 
     async function removeMovie(index) {

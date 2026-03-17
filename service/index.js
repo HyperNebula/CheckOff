@@ -24,6 +24,7 @@ async function createUser(username, password) {
         username: username,
         password: passwordHash,
         library: [],
+        sharePublic: true,
     };
 
     await DB.addUser(user);
@@ -76,7 +77,7 @@ app.put("/api/auth", async (req, res) => {
         if (await bcrypt.compare(req.body.password, user.password)) {
             await setAuthCookie(res, user);
 
-            res.status(200).send({ username: user.username });
+            res.status(200).send({ sharePublic: user.sharePublic });
         } else {
             res.status(401).send({ msg: "Incorrect Password" });
         }
