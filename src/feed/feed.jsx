@@ -7,7 +7,7 @@ function ToWatchUpdate( {update} ) {
     return (
         <article>
             <header>
-                <span><strong>{update.user === localStorage.getItem("userName") ? "You" : update.user}</strong> added <strong>{update["#TITLE"]}</strong> to the "To Watch" list <TimeAgo date={update.updateTime} /></span>
+                <span><strong>{update.user === localStorage.getItem("userName") ? "You" : update.user}</strong> added <strong>{update["#TITLE"]}</strong> to {update.user === localStorage.getItem("userName") ? "your" : "their"} "To Watch" list <TimeAgo date={update.updateTime} /></span>
             </header>
 
             <figure>
