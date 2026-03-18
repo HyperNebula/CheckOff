@@ -135,6 +135,27 @@ app.put("/api/update/user", async (req, res) => {
     }
 });
 
+// change publicFeedOption
+app.put("/api/update/share", async (req, res) => {
+    try {
+        const token = req.cookies["token"];
+        const user = await getUser("token", token);
+
+        if (!user) {
+            res.status(402).send({ error: "Invalid token or user not found." });
+        } else {
+            user.sharePublic = req.body.isChecked;
+
+            await DB.updateUser(user)
+
+            res.status(200).send({ msg: "sharePublic state updated successfully" });
+        }
+    } catch (error) {
+        console.error("Error updating password:", error);
+        res.status(500).send({ error: "An internal server error occurred." });
+    }
+});
+
 // logout
 app.delete("/api/auth", async (req, res) => {
     const token = req.cookies["token"];

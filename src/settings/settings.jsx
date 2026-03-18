@@ -11,6 +11,7 @@ export function Settings() {
     const [username, setUsername] = useState(localStorage.getItem("userName"));
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
+    const [isChecked, setIsChecked] = useState(true); 
 
     const handleAccountUpdate = async (e) => {
         e.preventDefault();
@@ -52,6 +53,15 @@ export function Settings() {
                 return;
             }
         }
+        
+        const status = await createAuth("update/share", "PUT", JSON.stringify({ isChecked }));
+        localStorage.setItem("sharePublic", isChecked);
+
+        if (status == 402) {
+            toast.error("Invalid token or user not found. Log in again");
+            return;
+        }
+
 
         navigate('/library');
         toast.success("Settings updated");
@@ -125,7 +135,7 @@ export function Settings() {
                     
                     <p><strong>Privacy:</strong></p>
                     
-                    <input type="checkbox" defaultChecked/>
+                    <input type="checkbox" checked={isChecked} onChange={(e) => setIsChecked(e.target.checked)}/>
                     <label htmlFor="show-activity">Share my activity in the public feed</label>
                     
                 </fieldset>
