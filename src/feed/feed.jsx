@@ -7,7 +7,7 @@ function ToWatchUpdate( {update} ) {
     return (
         <article>
             <header>
-                <span><strong>{update.user}</strong> added <strong>{update["#TITLE"]}</strong> to the "To Watch" list <TimeAgo date={update.updateTime} /></span>
+                <span><strong>{update.user === localStorage.getItem("userName") ? "You" : update.user}</strong> added <strong>{update["#TITLE"]}</strong> to the "To Watch" list <TimeAgo date={update.updateTime} /></span>
             </header>
 
             <figure>
@@ -22,8 +22,7 @@ function WatchedUpdate( {update} ) {
     return (
         <article>
             <header>
-                <span>
-                    <strong>{update.user}</strong> watched <strong>{update["#TITLE"]}</strong> <TimeAgo date={update.updateTime} /></span>
+                <span><strong>{update.user === localStorage.getItem("userName") ? "You" : update.user}</strong> watched <strong>{update["#TITLE"]}</strong> <TimeAgo date={update.updateTime} /></span>
             </header>
 
             <figure>
@@ -39,7 +38,7 @@ function RatingUpdate( {update} ) {
         <>
             <article>
                 <header>
-                    <span><strong>{update.user}</strong> rated <strong>{update["#TITLE"] }</strong> <TimeAgo date={update.updateTime} /></span>
+                    <span><strong>{update.user === localStorage.getItem("userName") ? "You" : update.user}</strong> rated <strong>{update["#TITLE"] }</strong> <TimeAgo date={update.updateTime} /></span>
                 </header>
 
                 <p>Rating: {update.score}/10</p>
@@ -61,10 +60,6 @@ export function Feed() {
             <div className="activity-feed">
 
                 {updates.map((update, index) => {
-                    if (update.user == localStorage.getItem("userName")) {
-                        update.user = "You"
-                    }
-
                     if (update.status === "To Watch") {
                         return <ToWatchUpdate key={index} update={update} />;
                     } else if (update.status === "Watched" && update.score === "") {
