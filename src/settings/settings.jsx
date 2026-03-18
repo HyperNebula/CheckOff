@@ -11,7 +11,7 @@ export function Settings() {
     const [username, setUsername] = useState(localStorage.getItem("userName"));
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
-    const [isChecked, setIsChecked] = useState(true); 
+    const [isChecked, setIsChecked] = useState(localStorage.getItem("sharePublic")); 
 
     const handleAccountUpdate = async (e) => {
         e.preventDefault();

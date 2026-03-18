@@ -91,7 +91,7 @@ export function Library() {
 
         toast.success(moviePUT["#TITLE"] + " was added to your library");
 
-        if (localStorage.getItem("sharePublic")) {
+        if (localStorage.getItem("sharePublic") === 'true') {
             moviePUT.user = localStorage.getItem("userName");
             moviePUT.updateTime = Date();
             sendUpdate(moviePUT);
