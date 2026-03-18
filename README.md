@@ -1,6 +1,6 @@
 # CheckOff
 
-**CheckOff** is a media tracker website, allowing you to track and record all forms of media that you have consumed, such as movies, books, shows, and video games, all in one convenient place.
+**CheckOff** is a movie tracker website, allowing you to track and record all movies you have watched or plan to watch!
 
 ## 🚀 Specification Deliverable
 
@@ -114,8 +114,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [X] **Backend listens for WebSocket connection** -  Backend waits for data sent from frontend, and then sends it to all clients. The backend also temporarily stores recent feed updates so that users can see updates recieved even when they are not connected.
+- [X] **Frontend makes WebSocket connection** - Frontend connects to the websocket when the page is loaded and listens for data sent from backend.
+- [X] **Data sent over WebSocket connection** - Library updates are sent over websocket as the user updates their library, if they have selected this option in the account settings page.
+- [X] **WebSocket data displayed** - A list of updates sent over websocket is displayed on the feed page.
+- [X] **Application is fully functional** - The webapp is fully functional and has all intended features.
