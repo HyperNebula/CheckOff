@@ -6,7 +6,6 @@ const client = new MongoClient(url);
 const db = client.db('startup');
 const userCollection = db.collection('user');
 
-// This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
     try {
         await db.command({ ping: 1 });
@@ -35,11 +34,11 @@ async function getUser(field, value) {
 }
 
 async function updateUser(user) {
-  await userCollection.updateOne({ id: user.id }, { $set: user });
+    await userCollection.updateOne({ id: user.id }, { $set: user });
 }
 
 async function deleteUser(user) {
-  await userCollection.deleteOne({ id: user.id });
+    await userCollection.deleteOne({ id: user.id });
 }
 
 async function getLibrary(user) {
