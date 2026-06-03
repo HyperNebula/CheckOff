@@ -33,5 +33,5 @@ CheckOff is built using a modern full-stack web development environment:
 
 ## Live Application
 
-The server is fully deployed and accessible with a custom domain name:
-[**Access CheckOff Here**](https://startup.veskos.com)
+The website is fully deployed and accessible here:
+[**Access CheckOff Here**](https://checkoff.daviddeskins.com)
